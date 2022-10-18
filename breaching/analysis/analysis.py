@@ -339,7 +339,8 @@ def compute_batch_order(lpips_scorer, rec_denormalized, ground_truth_denormalize
     L = lpips_scorer.L
     assert ground_truth_denormalized.shape[0] == B
 
-    with torch.inference_mode():
+    # with torch.inference_mode():
+    with torch.no_grad():
         # Compute all features [assume sufficient memory is a given]
         features_rec = []
         for input in rec_denormalized:

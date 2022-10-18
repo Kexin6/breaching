@@ -271,7 +271,8 @@ def image_identifiability_precision(
 
             for score in scores:
                 if score == "lpips":
-                    with torch.inference_mode():
+                    # with torch.inference_mode():
+                    with torch.no_grad():
                         distances[score] += [lpips_scorer(reconstruction, comparable_data, normalize=False).mean()]
                 elif score == "self" and model is not None:
                     features_rec = _return_model_features(model, reconstruction)
@@ -295,7 +296,7 @@ def image_identifiability_precision(
     return {k: v / len(reconstructed_user_data["data"]) for k, v in identified_images.items()}
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def _return_model_features(model, inputs):
     features = dict()  # The named-hook + dict construction should be a bit more robust
     if inputs.ndim == 3:
