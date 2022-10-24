@@ -31,11 +31,14 @@ def _build_dataset_vision(cfg_data, split, can_download=True):
         )
         dataset.lookup = dict(zip(list(range(len(dataset))), dataset.targets))
     elif cfg_data.name == "ImageNet":
+        print("cfg data path: ", cfg_data.path)
         dataset = torchvision.datasets.ImageNet(
             root=cfg_data.path, split="train" if "train" in split else "val", transform=_default_t,
         )
         dataset.lookup = dict(zip(list(range(len(dataset))), [label for (_, label) in dataset.samples]))
     elif cfg_data.name == "ImageNetAnimals":
+        print("cfg data path: ", cfg_data.path)
+        
         dataset = torchvision.datasets.ImageNet(
             root=cfg_data.path, split="train" if "train" in split else "val", transform=_default_t,
         )

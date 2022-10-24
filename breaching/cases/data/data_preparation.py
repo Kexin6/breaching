@@ -21,8 +21,9 @@ def construct_dataloader(cfg_data, cfg_impl, user_idx=0, return_full_dataset=Fal
     """
     if cfg_data.modality == "vision":
         from .datasets_vision import _build_dataset_vision, _split_dataset_vision
-
+        print("cfg data: ", cfg_data)
         dataset, collate_fn = _build_dataset_vision(cfg_data, split=cfg_data.examples_from_split, can_download=True)
+        print(dataset)
         dataset = _split_dataset_vision(dataset, cfg_data, user_idx, return_full_dataset)
     elif cfg_data.modality == "text":
         from .datasets_text import _build_and_split_dataset_text
