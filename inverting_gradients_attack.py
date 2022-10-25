@@ -10,6 +10,7 @@ import torch
 # %load_ext autoreload
 # %autoreload 2
 
+# conda activate breaching for using GPU
 # Redirects logs directly into the jupyter notebook
 import logging, sys
 
